@@ -1,31 +1,31 @@
-type BudgetStatus =
-  | "Sota pressupost ✈️"
-  | "Dins pressupost ✅"
-  | "Sobre pressupost ⚠️";
+export type BudgetStatus =
+  | "Under budget ✈️"
+  | "Within budget ✅"
+  | "Over budget ⚠️";
 
 export const calculateBudgetStatus = (
   totalExpenses: number,
   budget: number,
 ): BudgetStatus => {
   if (budget <= 0) {
-    throw new Error("El pressupost ha de ser superior a 0");
+    throw new Error("Budget must be greater than 0");
   }
 
   if (totalExpenses < 0) {
-    throw new Error("Les despeses no poden ser negatives");
+    throw new Error("Expenses cannot be negative");
   }
 
   const percentage = (totalExpenses / budget) * 100;
 
   if (percentage < 80) {
-    return `Sota pressupost ✈️`;
+    return "Under budget ✈️";
   }
 
   if (percentage <= 100) {
-    return `Dins pressupost ✅`;
+    return "Within budget ✅";
   }
 
-  return `Sobre pressupost ⚠️`;
+  return "Over budget ⚠️";
 };
 
 // console.log(calculateBudgetStatus(850, 1000));

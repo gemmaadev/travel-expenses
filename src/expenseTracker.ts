@@ -1,6 +1,6 @@
-type Rating = 1 | 2 | 3;
+export type Rating = 1 | 2 | 3;
 
-interface ExpenseReport {
+export interface ExpenseReport {
   travelDays: number;
   expenseDays: number;
   dailyBudget: number;
@@ -15,11 +15,11 @@ export const generateExpenseReport = (
   dailyBudget: number,
 ): ExpenseReport => {
   if (dailyExpenses.some((expense) => expense < 0)) {
-    throw new Error("Les despeses no poden ser negatives");
+    throw new Error("Expenses cannot be negative");
   }
 
   if (dailyExpenses.length === 0) {
-    throw new Error("L'array de despeses no pot estar buit");
+    throw new Error("The expenses array cannot be empty");
   }
 
   const travelDays = dailyExpenses.length;
@@ -34,13 +34,13 @@ export const generateExpenseReport = (
   let rating: Rating;
 
   if (averageDailyExpense <= dailyBudget) {
-    feedback = "Excel·lent gestió!";
+    feedback = "Excellent!";
     rating = 3;
   } else if (averageDailyExpense <= dailyBudget * 1.2) {
-    feedback = "Correcte, però ajustat";
+    feedback = "Correct, but tight";
     rating = 2;
   } else {
-    feedback = "Pot millorar";
+    feedback = "Can improve";
     rating = 1;
   }
 
