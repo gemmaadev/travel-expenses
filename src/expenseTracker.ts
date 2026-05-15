@@ -14,6 +14,9 @@ export const generateExpenseReport = (
   dailyExpenses: number[],
   dailyBudget: number,
 ): ExpenseReport => {
+  if (dailyExpenses.some(isNaN)) {
+    throw new Error("Expenses contain non-numeric values");
+  }
   if (dailyExpenses.some((expense) => expense < 0)) {
     throw new Error("Expenses cannot be negative");
   }
